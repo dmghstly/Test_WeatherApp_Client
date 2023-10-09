@@ -1,0 +1,45 @@
+<div class="container my-5">
+    <h1 class="mb-3">Данные о погоде</h1>
+    <p *ngIf="!(getMonths && getMonths.length)">Данные не найдены</p>
+    <div *ngIf="getMonths && getMonths.length">
+        <select #months (change)="onSelected(months.value)">
+            <option *ngFor="let month of getMonths" [value]="month.id">
+                {{ month.name }}, {{ month.yearNum }}
+            </option>
+        </select>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Время</th>
+                    <th>Температура, гр. Ц</th>
+                    <th>Влажность воздуха, %</th>
+                    <th>Точка росы</th>
+                    <th>Атм. давление</th>
+                    <th>Направление ветра</th>
+                    <th>Скорость ветра, м/с</th>
+                    <th>Облачность, в %</th>
+                    <th>Нижняя граница облачности</th>
+                    <th>Горизонтальная видмость</th>
+                    <th>Природные явления</th>
+                </tr>       
+            </thead>
+            <tbody>
+                <tr *ngFor="let forecast of weatherForecast">
+                    <td>{{forecast.day}}</td>
+                    <td>{{forecast.time}}</td>
+                    <td>{{forecast.temprature}}</td>
+                    <td>{{forecast.humidity}}</td>
+                    <td>{{forecast.dewPoint}}</td>
+                    <td>{{forecast.pressure}}</td>
+                    <td>{{forecast.windDirection}}</td>
+                    <td>{{forecast.windSpeed}}</td>
+                    <td>{{forecast.cloudy}}</td>
+                    <td>{{forecast.cloudBase}}</td>
+                    <td>{{forecast.horizontalVisability}}</td>
+                    <td>{{forecast.weatherConditions}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
